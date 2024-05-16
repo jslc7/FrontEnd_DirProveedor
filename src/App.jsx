@@ -1,20 +1,21 @@
 import "./App.css";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Principal from "./pages/principal/Principal";
-import NavbarC from "./components/Navbar/NavbarC";
+import "bootstrap/dist/js/bootstrap.bundle";
+import Layout from "./components/Layout/Layout";
+import Categorias from "./pages/categorias/Categorias";
 
 function App() {
-	const router = createBrowserRouter([
-		{
-			path: "/",
-			element: <Principal />,
-		},
-	]);
-
 	return (
 		<>
-			<NavbarC />
-			<RouterProvider router={router} />
+			<BrowserRouter>
+				<Layout>
+					<Routes>
+						<Route exact path="/" element={<Principal />} />
+						<Route exact path="/categorias" element={<Categorias />} />
+					</Routes>
+				</Layout>
+			</BrowserRouter>
 		</>
 	);
 }

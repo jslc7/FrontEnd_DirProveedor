@@ -1,7 +1,7 @@
 function Principal() {
 	return (
 		<>
-			<div>Hola</div>
+			<div className="fs-1">Hola</div>
 		</>
 	);
 }
