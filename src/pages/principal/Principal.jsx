@@ -1,8 +1,14 @@
+import Carousels from '../../components/Carousel/Carousel';
+import Card from 'react-bootstrap/Card';
+
 function Principal() {
 	return (
 		<>
-			<div className="fs-1">Hola</div>
-		</>
+			<main>
+				<Carousels/>
+			</main>	
+	
+		</>	
 	);
 }
 
