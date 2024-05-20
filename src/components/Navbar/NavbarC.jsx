@@ -1,12 +1,28 @@
+import { useEffect, useState } from "react";
 import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { API_CATEGORIAS, SERVER_URL } from "../../urlConf";
 
 function NavbarC() {
+	const [categorias, setCategorias] = useState([]);
+	const getCategorias = async () => {
+		await fetch(SERVER_URL + API_CATEGORIAS, {
+			method: "GET",
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+				setCategorias(data);
+			});
+	};
 
+	useEffect(() => {
+		getCategorias();
+	}, []);
 	return (
 		<Navbar expand="lg" className="bg-body-tertiary">
 			<Container fluid>
-				<Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+				<Navbar.Brand href="#">Proveedor</Navbar.Brand>
 				<Navbar.Toggle aria-controls="navbarScroll" />
 				<Navbar.Collapse id="navbarScroll">
 					<Nav
@@ -15,25 +31,30 @@ function NavbarC() {
 						navbarScroll
 					>
 						<Nav.Link as={Link} to={"/"}>
-							Principal
+							Inicio
 						</Nav.Link>
+						<NavDropdown
+							title="Materiales Electricos"
+							id="basic-nav-dropdown"
+						>
+							{categorias.map((values) => (
+								// eslint-disable-next-line react/jsx-key
+								<NavDropdown.Item href={"/cat/" + values.id}>
+									{values.nombre}
+								</NavDropdown.Item>
+							))}
+						</NavDropdown>
 						<Nav.Link as={Link} to="/categorias">
 							Categorias
 						</Nav.Link>
-						<NavDropdown title="Link" id="navbarScrollingDropdown">
-							<NavDropdown.Item href="#action3">
-								Action
-							</NavDropdown.Item>
-							<NavDropdown.Item href="#action4">
-								Another action
-							</NavDropdown.Item>
-							<NavDropdown.Divider />
-							<NavDropdown.Item href="#action5">
-								Something else here
-							</NavDropdown.Item>
-						</NavDropdown>
-						<Nav.Link href="#" disabled>
-							Link
+						<Nav.Link as={Link} to="/empresas">
+							Empresas
+						</Nav.Link>
+						<Nav.Link as={Link} to="/catalogos">
+							Catalogos
+						</Nav.Link>
+						<Nav.Link as={Link} to="/nosotros">
+							Acerca de nosotros
 						</Nav.Link>
 					</Nav>
 					<Nav>
