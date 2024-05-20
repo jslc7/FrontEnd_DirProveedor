@@ -3,14 +3,18 @@ import { API_EMPRESAS, SERVER_URL } from "../../urlConf";
 import { useEffect, useState } from "react";
 import CardEmpresas from "./Modules/CardEmpresas";
 import "./Catalogo.css";
+//import { useSearchParams } from "react-router-dom";
 
 const Catalogo = () => {
 	const [empresas, setEmpresas] = useState([]);
+	//const [searchParams] = useSearchParams();
+
+	//const id_categoria = searchParams.get("id");
 	const getEmpresas = async () => {
-		await fetch(SERVER_URL + API_EMPRESAS)
+		await fetch(SERVER_URL + API_EMPRESAS )
 			.then((res) => res.json())
 			.then((data) => {
-				setEmpresas(data);
+				setEmpresas(data ?? []);
 			});
 	};
 

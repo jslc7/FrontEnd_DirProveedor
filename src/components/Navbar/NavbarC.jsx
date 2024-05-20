@@ -39,7 +39,7 @@ function NavbarC() {
 						>
 							{categorias.map((values) => (
 								// eslint-disable-next-line react/jsx-key
-								<NavDropdown.Item href={"/cat/" + values.id}>
+								<NavDropdown.Item key={"nav"+values.id} href={"/catalogos?id=" + values.id}>
 									{values.nombre}
 								</NavDropdown.Item>
 							))}
@@ -50,7 +50,7 @@ function NavbarC() {
 						<Nav.Link as={Link} to="/empresas">
 							Empresas
 						</Nav.Link>
-						<Nav.Link as={Link} to="/catalogos">
+						<Nav.Link as={Link} to="/catalogos?id=0">
 							Catalogos
 						</Nav.Link>
 						<Nav.Link as={Link} to="/nosotros">
